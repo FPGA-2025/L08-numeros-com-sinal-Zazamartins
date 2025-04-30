@@ -7,6 +7,14 @@ module numeros_com_sinal(
     output reg [7:0] saida
 );
 
-//insira seu codigo aqui
+always @(*) begin
+    case(codigo)
+        2'b00: saida = entrada_signed_1 + entrada_signed_2;  // signed + signed
+        2'b01: saida = entrada_unsigned_1 + entrada_unsigned_2;  // unsigned + unsigned
+        2'b10: saida = entrada_unsigned_1 + entrada_signed_1;  // unsigned + signed
+        2'b11: saida = entrada_unsigned_1 + entrada_signed_2;  // unsigned + signed
+        default: saida = 8'b0;  // default case (não deve ocorrer com codigo de 2 bits)
+    endcase
+end
 
 endmodule
